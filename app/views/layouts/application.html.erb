@@ -9,7 +9,25 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body><div id= "user_header">
+
+  <% if current_user %>
+    logged in as<%= current_user.email %>
+    <%= link_to "log Out", logout_path %>
+
+  <% else %>
+    <%= link_to "sign up", signup_path %> or
+    <%= link_to "log in", login_path %>
+  <% end %>
+
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  
+  </div>  
     <%= yield %>
   </body>
 </html>
+
+
+
